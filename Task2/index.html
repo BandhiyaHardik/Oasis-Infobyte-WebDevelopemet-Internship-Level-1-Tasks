@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interactive Developer Portfolio | Creative coding and immersive digital experiences"
+    />
+    <meta
+      name="keywords"
+      content="portfolio, 3D portfolio, creative developer, web design, interactive experience"
+    />
+    <title>Hardik Bandhiya | Creative Developer & Digital Artist</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/images/profile.webp" as="image" />
+  </head>
+  <body class="loading">
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+      <div class="transition-shape"></div>
+    </div>
+
+    <!-- Noise Texture Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+      <div class="loader-container">
+        <div class="loader-circle"></div>
+        <div class="loader-text">
+          <span>L</span>
+          <span>O</span>
+          <span>A</span>
+          <span>D</span>
+          <span>I</span>
+          <span>N</span>
+          <span>G</span>
+        </div>
+      </div>
+      <div class="loader-progress">
+        <div class="progress-bar"></div>
+        <div class="progress-text"></div>
+      </div>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="scroll-progress-container">
+      <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-outer"></div>
+    <div class="cursor-inner"></div>
+    <div class="cursor-text"></div>
+
+    <!-- WebGL Canvas Container -->
+    <div id="webgl-background" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <div class="logo-container">
+          <div class="logo">
+            <svg class="logo-svg" width="50" height="50" viewBox="0 0 50 50">
+              <circle cx="25" cy="25" r="20" class="logo-circle" />
+              <path d="M15,25 L35,25 M25,15 L25,35" class="logo-path" />
+            </svg>
+            <span class="logo-text">Hardik<span>Bandhiya</span></span>
+          </div>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li>
+              <a href="#home" class="nav-link active" data-section="home"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a href="#about" class="nav-link" data-section="about">About</a>
+            </li>
+            <li>
+              <a href="#skills" class="nav-link" data-section="skills"
+                >Skills</a
+              >
+            </li>
+            <li>
+              <a href="#works" class="nav-link" data-section="works">Works</a>
+            </li>
+            <li>
+              <a href="#experience" class="nav-link" data-section="experience"
+                >Experience</a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="nav-link" data-section="contact"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="sound-toggle" aria-label="Toggle sound">
+            <i class="fas fa-volume-mute"></i>
+          </button>
+
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <div class="theme-icon">
+              <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i>
+            </div>
+          </button>
+
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Home Section -->
+      <section id="home" class="section active" data-bgcolor="#050510">
+        <div class="hero-wrapper">
+          <div class="hero-content">
+            <h1 class="hero-title split-text" data-animation="chars">
+              Creative
+              <span class="accent-text">Developer</span>
+              <span class="outline-text">&</span>
+              Digital Artist
+            </h1>
+
+            <div class="hero-subtitle">
+              <div class="subtitle-prefix">I create</div>
+              <div class="rotating-text">
+                <span
+                  class="txt-rotate"
+                  data-period="2000"
+                  data-rotate='["immersive experiences", "interactive designs", "digital solutions", "creative concepts"]'
+                ></span>
+              </div>
+            </div>
+
+            <div class="hero-description" data-animation="lines">
+              <p>
+                Transforming ideas into extraordinary digital experiences
+                through code, creativity, and innovation.
+              </p>
+            </div>
+
+            <div class="hero-cta">
+              <a href="#works" class="btn btn-primary">
+                <span class="btn-text">View My Work</span>
+                <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+              </a>
+              <a href="#contact" class="btn btn-outline">
+                <span class="btn-text">Get In Touch</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-media">
+            <div class="shape-container">
+              <div class="floating-shape shape1"></div>
+              <div class="floating-shape shape2"></div>
+              <div class="floating-shape shape3"></div>
+            </div>
+            <div class="profile-container">
+              <div class="profile-mask">
+                <img
+                  src="assets/images/profile.jpg"
+                  alt="Developer Profile Photo"
+                  class="profile-image"
+                />
+                <div class="profile-mask-overlay"></div>
+              </div>
+              <div class="orbit-container">
+                <div class="orbit-ring"></div>
+                <div class="orbit-circle"><i class="fab fa-react"></i></div>
+                <div class="orbit-circle"><i class="fab fa-js"></i></div>
+                <div class="orbit-circle"><i class="fab fa-html5"></i></div>
+                <div class="orbit-circle"><i class="fab fa-css3-alt"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="scroll-indicator">
+            <div class="mouse">
+              <div class="wheel"></div>
+            </div>
+            <div class="scroll-text">Scroll to explore</div>
+          </div>
+
+          <div class="hero-particles" id="hero-particles"></div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="section" data-bgcolor="#06051a">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-container">
+              <span class="section-label" data-animation="fade">About Me</span>
+              <h2 class="section-title split-text" data-animation="chars">
+                Who I Am
+              </h2>
+              <div class="section-line"></div>
+            </div>
+          </div>
+
+          <div class="about-container">
+            <div class="about-image-container" data-animation="reveal">
+              <div class="about-image">
+                <img src="assets/images/about2.png" alt="About Me Image" />
+                <div class="about-image-overlay"></div>
+              </div>
+              <div class="experience-badge">
+                <span class="experience-years">2+</span>
+                <span class="experience-text">Years<br />Experience</span>
+              </div>
+            </div>
+
+            <div class="about-content">
+              <div class="about-text" data-animation="lines">
+                <p class="lead-text">
+                  I'm a passionate
+                  <span class="accent-text">creative developer</span> and
+                  <span class="accent-text">digital artist</span> focused on
+                  crafting immersive web experiences that push the boundaries of
+                  what's possible on the web.
+                </p>
+
+                <p>
+                  With over 2 years of experience in the digital realm, I blend
+                  technical expertise with creative vision to deliver stunning,
+                  interactive, and performant solutions. I specialize in WebGL,
+                  Three.js, creative coding, and front-end development.
+                </p>
+
+                <p>
+                  My approach combines cutting-edge technology with thoughtful
+                  design to create memorable digital journeys that engage and
+                  inspire users.
+                </p>
+              </div>
+
+              <div class="about-stats">
+                <div class="stat-item" data-animation="fade">
+                  <div class="stat-number counter" data-target="50">2</div>
+                  <div class="stat-label">Completed Projects</div>
+                </div>
+
+                <div class="stat-item" data-animation="fade" data-delay="0.2">
+                  <div class="stat-number counter" data-target="30">5</div>
+                  <div class="stat-label">Happy Clients</div>
+                </div>
+
+                <div class="stat-item" data-animation="fade" data-delay="0.4">
+                  <div class="stat-number counter" data-target="15">0</div>
+                  <div class="stat-label">Awards Received</div>
+                </div>
+              </div>
+
+              <div class="about-actions" data-animation="fade" data-delay="0.4">
+                <a
+                  href="https://drive.google.com/file/d/1DSJRFgc8VbaSA11iII_cuawbIHWvttYJ/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary"
+                  download
+                >
+                  <span class="btn-text">Download CV</span>
+                  <span class="btn-icon"><i class="fas fa-download"></i></span>
+                </a>
+
+                <div class="social-links">
+                  <a
+                    href="https://github.com/BandhiyaHardik"
+                    class="social-link"
+                    aria-label="GitHub"
+                    data-cursor-text="GitHub"
+                  >
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/bandhiya-hardik/"
+                    class="social-link"
+                    aria-label="LinkedIn"
+                    data-cursor-text="LinkedIn"
+                  >
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a
+                    href="https://x.com/bandhiyahardik8"
+                    class="social-link"
+                    aria-label="Twitter"
+                    data-cursor-text="Twitter"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="14"
+                      width="14"
+                      viewBox="0 0 512 512"
+                    >
+                      <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                      <path
+                        fill="#dfdddd"
+                        d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                      />
+                    </svg>
+                  </a>
+                  <!-- <a href="#" class="social-link" aria-label="Dribbble" data-cursor-text="Dribbble">
+                                    <i class="fab fa-dribbble"></i>
+                                </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-particles" id="about-particles"></div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="section" data-bgcolor="#07062a">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-container">
+              <span class="section-label" data-animation="fade"
+                >My Expertise</span
+              >
+              <h2 class="section-title split-text" data-animation="chars">
+                Skills & Tools
+              </h2>
+              <div class="section-line"></div>
+            </div>
+          </div>
+
+          <div class="skills-container">
+            <!-- Tabs at the top -->
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="dev">Development</button>
+              <button class="tab-btn" data-tab="design">Design</button>
+              <button class="tab-btn" data-tab="tools">Tools</button>
+            </div>
+            <!-- Skills content below tabs -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="dev">
+                <div class="skills-grid">
+                  <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                    <div class="skill-info">
+                      <h3 class="skill-name">HTML5</h3>
+                      <div class="skill-bar-container">
+                        <div class="skill-bar">
+                          <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                        <div class="skill-percentage">95%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="skill-card">
+                    <div class="skill-icon">
+                      <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <div class="skill-info">
+                      <h3 class="skill-name">CSS3</h3>
+                      <div class="skill-bar-container">
+                        <div class="skill-bar">
+                          <div class="skill-progress" style="width: 92%"></div>
+                        </div>
+                        <div class="skill-percentage">92%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="skill-card">
+                    <div class="skill-icon">
+                      <i class="fab fa-js-square"></i>
+                    </div>
+                    <div class="skill-info">
+                      <h3 class="skill-name">JavaScript</h3>
+                      <div class="skill-bar-container">
+                        <div class="skill-bar">
+                          <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                        <div class="skill-percentage">90%</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Add more dev skills as needed -->
+                </div>
+              </div>
+              <div class="tab-pane" id="design">
+                <div class="skills-grid">
+                  <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-figma"></i></div>
+                    <div class="skill-info">
+                      <h3 class="skill-name">Figma</h3>
+                      <div class="skill-bar-container">
+                        <div class="skill-bar">
+                          <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                        <div class="skill-percentage">88%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="skill-card">
+                    <div class="skill-icon">
+                      <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="skill-info">
+                      <h3 class="skill-name">Adobe XD</h3>
+                      <div class="skill-bar-container">
+                        <div class="skill-bar">
+                          <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                        <div class="skill-percentage">85%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Add more design skills as needed -->
+                </div>
+              </div>
+              <div class="tab-pane" id="tools">
+                <div class="skills-grid">
+                  <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                    <div class="skill-info">
+                      <h3 class="skill-name">Git</h3>
+                      <div class="skill-bar-container">
+                        <div class="skill-bar">
+                          <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                        <div class="skill-percentage">90%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-npm"></i></div>
+                    <div class="skill-info">
+                      <h3 class="skill-name">NPM</h3>
+                      <div class="skill-bar-container">
+                        <div class="skill-bar">
+                          <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                        <div class="skill-percentage">85%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Add more tools as needed -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skills-visual">
+            <div class="skill-globe-container">
+              <div id="skill-globe" class="skill-globe"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-particles" id="skills-particles"></div>
+      </section>
+
+      <!-- Works Section -->
+      <section id="works" class="section" data-bgcolor="#040425">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-container">
+              <span class="section-label" data-animation="fade">Portfolio</span>
+              <h2 class="section-title split-text" data-animation="chars">
+                Selected Works
+              </h2>
+              <div class="section-line"></div>
+            </div>
+          </div>
+
+          <div class="works-filters" data-animation="fade">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">
+              Web Development
+            </button>
+            <button class="filter-btn" data-filter="interactive">AI/ML</button>
+            <button class="filter-btn" data-filter="3d">Three.js</button>
+            <button class="filter-btn" data-filter="ui">UI/UX Design</button>
+          </div>
+
+          <div class="works-grid">
+            <!-- Project 1 -->
+            <div class="work-item web" data-animation="reveal">
+              <div class="work-card">
+                <div class="work-image">
+                  <img
+                    src="assets/images/projects/1.jpg"
+                    alt="Expense Tracker Project"
+                  />
+                  <div class="work-overlay"></div>
+                  <div class="work-preview">
+                    <video
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                      data-src="assets/videos/expense-tracker.mp4"
+                      poster="assets/images/projects/1.jpg"
+                    ></video>
+                  </div>
+                </div>
+                <div class="work-content">
+                  <div class="work-tags">
+                    <span class="work-tag">MERN</span>
+                    <span class="work-tag">MongoDB</span>
+                    <span class="work-tag">Express</span>
+                    <span class="work-tag">React</span>
+                    <span class="work-tag">Node.js</span>
+                  </div>
+                  <h3 class="work-title">Expense Tracker</h3>
+                  <p class="work-description">
+                    This Expense Tracker is a simple MERN stack project
+                    developed for learning and demonstration purposes. It does
+                    not include authentication or advanced security features,
+                    and is focused on core CRUD operations and state management
+                    to practice full-stack development fundamentals.
+                  </p>
+                  <div class="work-links">
+                    <!-- <a href="" class="work-link" data-cursor-text="Visit Site">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a> -->
+                    <a href="https://github.com/BandhiyaHardik/Expense-Tracker" class="work-link" data-cursor-text="View Code">
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <button
+                      class="work-link project-details-trigger"
+                      data-project="expense-tracker"
+                      data-cursor-text="Details"
+                    >
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="work-item ml" data-animation="reveal">
+              <div class="work-card">
+                <div class="work-image">
+                  <img
+                    src="assets/images/projects/2.jpg"
+                    alt="Heart Disease Prediction Project"
+                  />
+                  <div class="work-overlay"></div>
+                  <div class="work-preview">
+                    <video
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                      data-src="assets/videos/heart-disease.mp4"
+                      poster="assets/images/projects/2.jpg"
+                    ></video>
+                  </div>
+                </div>
+                <div class="work-content">
+                  <div class="work-tags">
+                    <span class="work-tag">Machine Learning</span>
+                    <span class="work-tag">Python</span>
+                    <span class="work-tag">Flask</span>
+                  </div>
+                  <h3 class="work-title">Heart Disease Prediction</h3>
+                  <p class="work-description">
+                    This Heart Disease Prediction project uses machine learning
+                    algorithms implemented with Python and Flask. It is designed
+                    for educational and demonstration purposes, allowing users
+                    to input health parameters and receive a prediction
+                    regarding heart disease risk.
+                  </p>
+                  <div class="work-links">
+                    <!-- <a href="#" class="work-link" data-cursor-text="Visit Site">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a> -->
+                    <a href="https://github.com/BandhiyaHardik/Heart-disease-prediction" class="work-link" data-cursor-text="View Code">
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <button
+                      class="work-link project-details-trigger"
+                      data-project="heart-disease"
+                      data-cursor-text="Details"
+                    >
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="work-item dashboard" data-animation="reveal">
+              <div class="work-card">
+                <div class="work-image">
+                  <img
+                    src="assets/images/projects/3.jpg"
+                    alt="Trendlytics - Social Media Analytics Dashboard"
+                  />
+                  <div class="work-overlay"></div>
+                  <div class="work-preview">
+                    <video
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                      data-src="assets/videos/trendlytics.mp4"
+                      poster="assets/images/projects/3.jpg"
+                    ></video>
+                  </div>
+                </div>
+                <div class="work-content">
+                  <div class="work-tags">
+                    <span class="work-tag">Power BI</span>
+                    <span class="work-tag">Machine Learning</span>
+                    <span class="work-tag">HTML</span>
+                    <span class="work-tag">CSS</span>
+                    <span class="work-tag">JavaScript</span>
+                    <span class="work-tag">Bootstrap</span>
+                  </div>
+                  <h3 class="work-title">
+                    Trendlytics - Social Media Analytics Dashboard
+                  </h3>
+                  <p class="work-description">
+                    Trendlytics is a social media analytics dashboard built
+                    using Power BI, machine learning, and modern web
+                    technologies. It provides insightful visualizations and
+                    predictive analytics for social media trends, utilizing
+                    HTML, CSS, JavaScript, and Bootstrap for a responsive and
+                    interactive user experience.
+                  </p>
+                  <div class="work-links">
+                    <!-- <a href="#" class="work-link" data-cursor-text="Visit Site">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a> -->
+                    <a href="https://github.com/BandhiyaHardik/Trendlytics-SOCIAL_MEDIA_ANALYSIS" class="work-link" data-cursor-text="View Code">
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <button
+                      class="work-link project-details-trigger"
+                      data-project="trendlytics"
+                      data-cursor-text="Details"
+                    >
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="works-pagination" data-animation="fade">
+            <button class="pagination-link active">1</button>
+            <button class="pagination-link">2</button>
+            <button class="pagination-link">3</button>
+          </div>
+        </div>
+
+        <div class="section-particles" id="works-particles"></div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="section" data-bgcolor="#050520">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-container">
+              <span class="section-label" data-animation="fade"
+                >Work & Education</span
+              >
+              <h2 class="section-title split-text" data-animation="chars">
+                My Journey
+              </h2>
+              <div class="section-line"></div>
+            </div>
+          </div>
+
+          <div class="experience-tabs">
+            <div class="tab-buttons" data-animation="fade">
+              <button class="tab-btn active" data-tab="work">
+                Work Experience
+              </button>
+              <button class="tab-btn" data-tab="education">Education</button>
+            </div>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="work">
+                <div class="timeline-container">
+                  <!-- Timeline Item 1 -->
+                  
+                    
+
+                  <!-- Timeline Item 2 -->
+                  
+                  <!-- Timeline Item 3 -->
+                  
+                    
+
+                  <!-- Experience Timeline -->
+                  <div class="timeline-item" data-animation="reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                      <div class="timeline-date">May 2025 - Present</div>
+                      <h3 class="timeline-title">Web Development Intern</h3>
+                      <div class="timeline-company">Ultron Technologi</div>
+                      <div class="timeline-description">
+                        <p>
+                          Currently pursuing a web development internship, focusing on building and enhancing web applications. Contributed to several small projects and gained practical experience in modern web technologies.
+                        </p>
+                        <ul class="timeline-list">
+                          <li>Developed and improved features for multiple web projects</li>
+                          <li>Utilized HTML, CSS, JavaScript, and modern frameworks in daily tasks</li>
+                          <li>Collaborated with the team to deliver high-quality, responsive web solutions</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item" data-animation="reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                      <div class="timeline-date">May 2025 - Present</div>
+                      <h3 class="timeline-title">Web Development Intern</h3>
+                      <div class="timeline-company">Oasis Infobyte</div>
+                      <div class="timeline-description">
+                        <p>
+                          Currently working as a web development intern, focusing on building interactive and responsive web projects. Completed several hands-on projects using HTML, CSS, JavaScript, and Three.js.
+                        </p>
+                        <ul class="timeline-list">
+                          <li>Developed a modern landing page</li>
+                          <li>Built a temperature converter application</li>
+                          <li>Created a personal portfolio website with interactive elements</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item" data-animation="reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                      <div class="timeline-date">Jul 2023 - Aug 2023</div>
+                      <h3 class="timeline-title">Full Stack Developer Intern</h3>
+                      <div class="timeline-company">Learn and Empower Pvt Ltd</div>
+                      <div class="timeline-description">
+                        <p>
+                          Completed a full stack developer internship, gaining hands-on experience in both frontend and backend technologies. Contributed to two real-world projects as part of the internship.
+                        </p>
+                        <ul class="timeline-list">
+                          <li>Developed and deployed two full stack web applications as part of the internship projects</li>
+                          <li>Worked with technologies such as React, Node.js, Express, and MongoDB</li>
+                          <li>Collaborated with a team to deliver project features and resolve bugs efficiently</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane" id="education">
+                <div class="timeline-container">
+                  <!-- Education Timeline -->
+<div class="timeline-item" data-animation="reveal">
+  <div class="timeline-marker"></div>
+  <div class="timeline-content">
+    <div class="timeline-date">July 2025 - Present</div>
+    <h3 class="timeline-title">B.Tech in Computer Engineering</h3>
+    <div class="timeline-company">Birla Vishvakarma Mahavidyalaya</div>
+    <div class="timeline-description">
+      <p>
+        Currently pursuing B.Tech in Computer Engineering, actively involved in technical and non-technical campus activities and student organizations.
+      </p>
+      <ul class="timeline-list">
+        <li>
+          <strong>Flashfolks Photography Team Member</strong> (Aug 2024 - Present):<br>
+          Participated in covering major events such as Genesis, Udaan (tech festival), workshops, and various campus activities.
+        </li>
+        <li>
+          <strong>CSI BVM SB Publicity Team</strong> (Jan 2025 - Present):<br>
+          Assisted with event publicity and contributed to the success of multiple student events.
+        </li>
+        <li>
+          <strong>Technical Head, BVM ML Club</strong> (Jan 2025 - Present):<br>
+          Led technical initiatives, organized events, and participated in hackathons.
+        </li>
+        <li>
+          <strong>Udaan 2025 (Technical Fest)</strong> (Feb 2025 - Mar 2025):<br>
+          Served as a member of both the photography and technical event teams, successfully managed photography for all events (including non-tech) and contributed to the execution of three major events.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="timeline-item" data-animation="reveal">
+  <div class="timeline-marker"></div>
+  <div class="timeline-content">
+    <div class="timeline-date">Oct 2021 - Jun 2024</div>
+    <h3 class="timeline-title">Diploma in Computer Engineering</h3>
+    <div class="timeline-company">A.V. Parekh Technical Institute, Rajkot</div>
+    <div class="timeline-description">
+      <p>
+        Successfully completed a diploma in Computer Engineering with a strong academic record and hands-on project experience.
+      </p>
+      <ul class="timeline-list">
+        <li>CGPA: 8.72</li>
+        <li>Participated in technical workshops and seminars</li>
+        <li>Developed practical skills in software and web development</li>
+      </ul>
+    </div>
+  </div>
+</div>
+                  <!-- Add more education items as needed -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-particles" id="experience-particles"></div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="section" data-bgcolor="#03031d">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-container">
+              <span class="section-label" data-animation="fade"
+                >Get In Touch</span
+              >
+              <h2 class="section-title split-text" data-animation="chars">
+                Let's Connect
+              </h2>
+              <div class="section-line"></div>
+            </div>
+          </div>
+
+          <div class="contact-container">
+            <div class="contact-info" data-animation="reveal">
+              <h3 class="contact-title">Have a project or idea?</h3>
+              <p class="contact-subtitle">
+                Let's bring it to life together. Feel free to reach out through
+                any of the channels below.
+              </p>
+
+              <div class="contact-method">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Email</h4>
+                  <a href="mailto:bandhiya.hardik1905@gmail.com"
+                    >bandhiya.hardik1905@gmail.com</a
+                  >
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-icon">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Phone</h4>
+                  <a href="tel:+1234567890">+91 1234567890</a>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Location</h4>
+                  <p>Ahemadabad,Gujarat,India</p>
+                </div>
+              </div>
+
+              <div class="contact-social">
+                <h4>Connect with me</h4>
+                <div class="social-icons">
+                  <a href="https://github.com/BandhiyaHardik" class="social-icon" data-cursor-text="GitHub">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/bandhiya-hardik/" class="social-icon" data-cursor-text="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a href="https://x.com/bandhiyahardik8" class="social-icon" data-cursor-text="Twitter">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="14"
+                      width="14"
+                      viewBox="0 0 512 512"
+                    >
+                      <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                      <path
+                        fill="#dfdddd"
+                        d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                      />
+                    </svg>
+                  </a>
+                  <!-- <a href="#" class="social-icon" data-cursor-text="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a> -->
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="contact-form-container"
+              data-animation="reveal"
+              data-delay="0.2"
+            >
+              <form class="contact-form">
+                <div class="form-group">
+                  <label for="name" class="form-label">Your Name</label>
+                  <input type="text" id="name" class="form-control" required />
+                  <div class="form-border"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="form-label">Your Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    required
+                  />
+                  <div class="form-border"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="subject" class="form-label">Subject</label>
+                  <input type="text" id="subject" class="form-control" />
+                  <div class="form-border"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="message" class="form-label">Your Message</label>
+                  <textarea
+                    id="message"
+                    class="form-control"
+                    rows="5"
+                    required
+                  ></textarea>
+                  <div class="form-border"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-submit">
+                  <span class="btn-text">Send Message</span>
+                  <span class="btn-icon"
+                    ><i class="fas fa-paper-plane"></i
+                  ></span>
+                </button>
+              </form>
+
+              <div class="form-status">
+                <div class="form-success">
+                  <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div class="success-message">
+                    Your message has been sent successfully!
+                  </div>
+                </div>
+
+                <div class="form-error">
+                  <div class="error-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                  </div>
+                  <div class="error-message">
+                    Oops! Something went wrong. Please try again.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-particles" id="contact-particles"></div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo">
+              <svg class="logo-svg" width="40" height="40" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20" class="logo-circle" />
+                <path d="M15,25 L35,25 M25,15 L25,35" class="logo-path" />
+              </svg>
+              <span class="logo-text">Hardik<span>Bandhiya</span></span>
+            </div>
+          </div>
+
+          <div class="footer-nav">
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#works">Works</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-socials">
+            <a href="https://github.com/BandhiyaHardik" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/bandhiya-hardik/" class="social-icon"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="https://x.com/bandhiyahardik8" class="social-icon"><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="14"
+                      width="14"
+                      viewBox="0 0 512 512"
+                    >
+                      <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                      <path
+                        fill="#dfdddd"
+                        d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                      />
+                    </svg></a>
+            <!-- <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a> -->
+          </div>
+
+          <div class="footer-bottom">
+            <div class="copyright">
+              &copy; 2025 HardikBandhiya. All Rights Reserved.
+            </div>
+            <div class="footer-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Project Details Modal -->
+    <div class="modal" id="projectModal">
+      <div class="modal-overlay"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title"></h3>
+          <button class="modal-close"></button>
+        </div>
+        <div class="modal-content">
+          <div class="modal-gallery">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <!-- Slides will be added dynamically with JS -->
+              </div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+          <div class="modal-info">
+            <div class="modal-description"></div>
+            <div class="modal-details">
+              <div class="modal-detail-item">
+                <h4></h4>
+                <p class="modal-client"></p>
+              </div>
+              <div class="modal-detail-item">
+                <h4></h4>
+                <p class="modal-date"></p>
+              </div>
+              <div class="modal-detail-item">
+                <h4></h4>
+                <div class="modal-tech-tags"></div>
+              </div>
+            </div>
+            <div class="modal-actions"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.3/dist/split-type.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/three-animation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

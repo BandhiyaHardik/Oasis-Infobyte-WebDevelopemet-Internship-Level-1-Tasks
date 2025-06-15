@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempWiz - 3D Temperature Converter</title>
+    <meta name="description" content="Convert between Celsius, Fahrenheit, and Kelvin with interactive 3D visualizations">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader-container">
+            <div class="loader-thermometer">
+                <div class="loader-mercury"></div>
+            </div>
+            <p>Loading Temperature Wizardry...</p>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🌡️</span>
+                <h1 class="logo-text">TempWiz</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#converter" class="nav-link active">Converter</a></li>
+                    <li><a href="#visualization" class="nav-link">Visualization</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+            <div class="theme-toggle">
+                <span class="theme-icon light">☀️</span>
+                <span class="theme-icon dark">🌙</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Temperature Conversion <span class="gradient-text">Reimagined</span></h1>
+                    <p class="hero-description">Convert between Celsius, Fahrenheit, and Kelvin with stunning 3D visualizations. Experience temperature like never before.</p>
+                    <div class="hero-cta">
+                        <a href="#converter" class="btn btn-primary">Start Converting</a>
+                        <a href="#visualization" class="btn btn-secondary">View 3D Models</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-thermometer">
+                        <div id="hero-thermometer"></div>
+                    </div>
+                    <div class="temp-particles"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Converter Section -->
+        <section id="converter" class="converter">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Temperature <span class="gradient-text">Converter</span></h2>
+                    <p class="section-subtitle">Quickly convert between Celsius, Fahrenheit, and Kelvin</p>
+                </div>
+                
+                <div class="converter-wrapper">
+                    <div class="converter-card">
+                        <div class="converter-inputs">
+                            <div class="input-group">
+                                <label for="temperature">Temperature</label>
+                                <input type="text" id="temperature" class="form-control" placeholder="Enter temperature...">
+                                <span class="input-error">Please enter a valid number</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>From</label>
+                                <div class="unit-selector from-unit">
+                                    <div class="unit-option active" data-unit="celsius">
+                                        <span class="unit-icon">°C</span>
+                                        <span class="unit-name">Celsius</span>
+                                    </div>
+                                    <div class="unit-option" data-unit="fahrenheit">
+                                        <span class="unit-icon">°F</span>
+                                        <span class="unit-name">Fahrenheit</span>
+                                    </div>
+                                    <div class="unit-option" data-unit="kelvin">
+                                        <span class="unit-icon">K</span>
+                                        <span class="unit-name">Kelvin</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="swap-btn">
+                                <div class="swap-icon">⇄</div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>To</label>
+                                <div class="unit-selector to-unit">
+                                    <div class="unit-option" data-unit="celsius">
+                                        <span class="unit-icon">°C</span>
+                                        <span class="unit-name">Celsius</span>
+                                    </div>
+                                    <div class="unit-option active" data-unit="fahrenheit">
+                                        <span class="unit-icon">°F</span>
+                                        <span class="unit-name">Fahrenheit</span>
+                                    </div>
+                                    <div class="unit-option" data-unit="kelvin">
+                                        <span class="unit-icon">K</span>
+                                        <span class="unit-name">Kelvin</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="convert-btn" class="btn btn-primary convert-btn">
+                            <span class="btn-text">Convert</span>
+                            <span class="btn-icon">🔄</span>
+                        </button>
+                        
+                        <div class="result-container">
+                            <div class="result-wrapper">
+                                <h3 class="result-label">Result</h3>
+                                <div class="result-value">
+                                    <span id="result-number">--</span>
+                                    <span id="result-unit">°F</span>
+                                </div>
+                                <div class="result-formula">
+                                    <p id="formula-text">Formula: (°C × 9/5) + 32 = °F</p>
+                                </div>
+                            </div>
+                            <div class="thermometer-container">
+                                <div class="thermometer">
+                                    <div class="thermometer-tube">
+                                        <div class="thermometer-mercury"></div>
+                                    </div>
+                                    <div class="thermometer-bulb"></div>
+                                </div>
+                                <div class="temp-scale">
+                                    <div class="scale-mark"><span>100°C</span></div>
+                                    <div class="scale-mark"><span>50°C</span></div>
+                                    <div class="scale-mark"><span>0°C</span></div>
+                                    <div class="scale-mark"><span>-50°C</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 3D Visualization Section -->
+        <section id="visualization" class="visualization">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">3D <span class="gradient-text">Visualization</span></h2>
+                    <p class="section-subtitle">Experience temperature in three dimensions</p>
+                </div>
+                
+                <div class="visualization-wrapper">
+                    <div class="visualization-controls">
+                        <div class="input-group">
+                            <label for="visual-temp">Set Temperature</label>
+                            <input type="range" id="visual-temp" min="-50" max="150" value="25" class="temp-slider">
+                            <div class="temp-value"><span id="visual-temp-value">25</span>°C</div>
+                        </div>
+                        <div class="visualization-buttons">
+                            <button class="btn btn-small active" data-unit="celsius">Celsius</button>
+                            <button class="btn btn-small" data-unit="fahrenheit">Fahrenheit</button>
+                            <button class="btn btn-small" data-unit="kelvin">Kelvin</button>
+                        </div>
+                    </div>
+                    
+                    <div class="visualization-scene">
+                        <div id="temperature-3d-model"></div>
+                        <div class="temp-indicators">
+                            <div class="temp-info cold">
+                                <div class="temp-icon">❄️</div>
+                                <div class="temp-desc">Freezing</div>
+                            </div>
+                            <div class="temp-info mild active">
+                                <div class="temp-icon">🌡️</div>
+                                <div class="temp-desc">Moderate</div>
+                            </div>
+                            <div class="temp-info hot">
+                                <div class="temp-icon">🔥</div>
+                                <div class="temp-desc">Hot</div>
+                            </div>
+                        </div>
+                        <div class="environment-particles"></div>
+                    </div>
+                    
+                    <div class="visualization-info">
+                        <h3>Temperature Facts</h3>
+                        <div class="fact-container">
+                            <div class="fact" id="temp-fact">
+                                At 25°C (77°F, 298.15K), water is in liquid form and is considered room temperature.
+                            </div>
+                        </div>
+                        <div class="equivalent-temps">
+                            <div class="equiv-temp">
+                                <span class="unit">°C</span>
+                                <span class="value" id="equiv-celsius">25</span>
+                            </div>
+                            <div class="equiv-temp">
+                                <span class="unit">°F</span>
+                                <span class="value" id="equiv-fahrenheit">77</span>
+                            </div>
+                            <div class="equiv-temp">
+                                <span class="unit">K</span>
+                                <span class="value" id="equiv-kelvin">298.15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About <span class="gradient-text">TempWiz</span></h2>
+                    <p class="section-subtitle">Understanding temperature conversion</p>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">🌡️</div>
+                        <h3>Celsius (°C)</h3>
+                        <p>The Celsius scale is based on the freezing (0°C) and boiling (100°C) points of water. Used in most countries worldwide for everyday temperature measurement.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">🌡️</div>
+                        <h3>Fahrenheit (°F)</h3>
+                        <p>The Fahrenheit scale sets water's freezing point at 32°F and boiling point at 212°F. Primarily used in the United States for everyday temperature measurement.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">🌡️</div>
+                        <h3>Kelvin (K)</h3>
+                        <p>The Kelvin is the SI base unit of temperature. 0K is absolute zero, the theoretical lowest possible temperature. Kelvin has the same magnitude as Celsius degrees.</p>
+                    </div>
+                    
+                    <div class="about-card formulas">
+                        <div class="about-icon">🧮</div>
+                        <h3>Conversion Formulas</h3>
+                        <div class="formula-grid">
+                            <div class="formula">
+                                <h4>Celsius to Fahrenheit</h4>
+                                <p>(°C × 9/5) + 32 = °F</p>
+                            </div>
+                            <div class="formula">
+                                <h4>Fahrenheit to Celsius</h4>
+                                <p>(°F - 32) × 5/9 = °C</p>
+                            </div>
+                            <div class="formula">
+                                <h4>Celsius to Kelvin</h4>
+                                <p>°C + 273.15 = K</p>
+                            </div>
+                            <div class="formula">
+                                <h4>Kelvin to Celsius</h4>
+                                <p>K - 273.15 = °C</p>
+                            </div>
+                            <div class="formula">
+                                <h4>Fahrenheit to Kelvin</h4>
+                                <p>(°F - 32) × 5/9 + 273.15 = K</p>
+                            </div>
+                            <div class="formula">
+                                <h4>Kelvin to Fahrenheit</h4>
+                                <p>(K - 273.15) × 9/5 + 32 = °F</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="temperature-facts">
+                    <h3>Interesting Temperature Facts</h3>
+                    <div class="facts-slider">
+                        <div class="fact-slide">
+                            <p>The coldest temperature ever recorded on Earth was -89.2°C (-128.6°F) at Vostok Station in Antarctica on July 21, 1983.</p>
+                        </div>
+                        <div class="fact-slide">
+                            <p>The hottest air temperature ever recorded on Earth was 56.7°C (134°F) in Death Valley, California, on July 10, 1913.</p>
+                        </div>
+                        <div class="fact-slide">
+                            <p>Absolute zero, the theoretical temperature at which particle motion stops, is -273.15°C, -459.67°F, or 0 Kelvin.</p>
+                        </div>
+                        <div class="fact-slide">
+                            <p>The average human body temperature is approximately 37°C (98.6°F), though this can vary slightly from person to person.</p>
+                        </div>
+                        <div class="fact-slide">
+                            <p>The coldest theoretical temperature, absolute zero, has never been achieved, though scientists have gotten within a billionth of a degree.</p>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="prev-fact">←</button>
+                        <div class="fact-indicators"></div>
+                        <button class="next-fact">→</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">🌡️</span>
+                    <h2 class="logo-text">TempWiz</h2>
+                </div>
+                <p class="footer-tagline">Converting temperatures in three dimensions</p>
+            </div>
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="#converter">Converter</a></li>
+                    <li><a href="#visualization">Visualization</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 TempWiz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="js/conversions.js"></script>
+    <script src="js/temperature-visualization.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
